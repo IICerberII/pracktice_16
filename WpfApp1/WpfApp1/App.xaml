@@ -1,0 +1,68 @@
+﻿<Application x:Class="WpfApp1.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfApp1"
+
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="ButtonStyle">
+            <Setter Property="Control.FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="Control.Background" Value="#5EBEC4"/>
+            <Setter Property="Control.Margin" Value="10"/>
+            <Setter Property="Control.BorderThickness" Value="0"/>
+        </Style>
+        <Style x:Key="TextBoxStyle">
+            <Setter Property="Control.BorderThickness" Value="1,5"/>
+            <Setter Property="Control.BorderBrush" Value="#5EBEC4"/>
+        </Style>
+        <Style x:Key="HeaderStyle">
+            <Setter Property="Control.FontSize" Value="26"/>
+            <Setter Property="Control.Margin" Value="5"/>
+            <Setter Property="Control.FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="Control.FontWeight" Value="Bold"/>
+            <Setter Property="Control.Foreground" Value="#5EBEC4"/>
+        </Style>
+        <Style TargetType="ProgressBar" x:Key="ProgressBarStyle">
+            <Setter Property="ProgressBar.Background" Value="#FDF5DF"/>
+            <Setter Property="ProgressBar.Foreground" Value="#5EBEC4"/>
+        </Style>
+        <Style x:Key="DataGridStyle">
+            <Setter Property="DataGrid.AutoGenerateColumns" Value="False" />
+            <Setter Property="DataGrid.CanUserAddRows" Value="False" />
+            <Setter Property="DataGrid.CanUserDeleteRows" Value="False" />
+            <Setter Property="DataGrid.HeadersVisibility" Value="None" />
+            <Setter Property="DataGrid.RowBackground" Value="White" />
+            <Setter Property="DataGrid.AlternatingRowBackground" Value="#FFFDFAF1" />
+            <Setter Property="DataGrid.GridLinesVisibility" Value="Horizontal" />
+            <Setter Property="DataGrid.HorizontalGridLinesBrush" Value="#5EBEC4"/>
+        </Style>
+        <Style x:Key="ContainerStyle">
+            <Style.Triggers>
+                <Trigger Property="Control.IsFocused" Value="True">
+                    <Setter Property="Control.FontWeight" Value="bold"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="NameStyle">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=CheckBoxForTwist, Path=IsChecked}" Value="True">
+                    <Setter Property="TextBlock.TextDecorations" Value="Strikethrough"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="DateColor">
+            <Setter Property="TextBlock.Foreground" Value="#FF71C52F"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=DueDate, Converter={StaticResource DateLessConverter}}" Value="True">
+                    <Setter Property="TextBlock.Foreground" Value="Red"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=DueDate, Converter={StaticResource DateNowConverter}}" Value="True">
+                    <Setter Property="TextBlock.Foreground" Value="#FFEA6A20"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=DueDate, Converter={StaticResource DateNextConverter}}" Value="True">
+                    <Setter Property="TextBlock.Foreground" Value="#DAA520"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Application.Resources>
+</Application>
